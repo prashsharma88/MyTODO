@@ -55,7 +55,7 @@ function App() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-6 font-sans">
       <div className="w-full max-w-lg bg-white shadow-xl rounded-xl p-6 space-y-6">
         <h1 className="text-3xl font-extrabold text-indigo-700 text-center flex items-center justify-center gap-3">
-          <CheckCircle className="w-8 h-8"/> CI/CD Todo List
+          <CheckCircle className="w-8 h-8"/> My Todo List
         </h1>
         
         <div className="flex items-center text-sm text-gray-500 justify-between">
