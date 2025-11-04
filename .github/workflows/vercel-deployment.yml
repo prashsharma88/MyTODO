@@ -77,11 +77,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node Environment
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{env.NODE_VERSION}}
-          cache: "npm"
+      #   - name: Setup Node Environment
+      #     uses: actions/setup-node@v6
+      #     with:
+      #       node-version: ${{env.NODE_VERSION}}
+      #       cache: "npm"
 
       - name: Download Build Artifact
         uses: actions/download-artifact@v5
@@ -90,7 +90,7 @@ jobs:
           path: ./dist
 
       - name: Install Vercel CLI
-        uses: npm install -g vercel # https://vercel.com/docs/cli?package-manager=npm
+        run: npm install -g vercel # https://vercel.com/docs/cli?package-manager=npm
 
       - name: Deploy to Vercel Production
         run: vercel deploy --prebuilt # https://vercel.com/docs/cli/deploy
