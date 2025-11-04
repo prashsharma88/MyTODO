@@ -24,7 +24,8 @@ jobs:
       - name: Display Context
         run: |
           echo context : ${{github.ref}}
-          echo is pull request merged ${{github.event.pull_request.merged}}
+          echo "--- GitHub Event Details ---"
+          echo '${{ toJSON(github.event) }}'
 
       - name: Checkout Code
         uses: actions/checkout@v4
