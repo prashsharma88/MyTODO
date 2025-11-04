@@ -23,7 +23,8 @@ jobs:
     steps:
       - name: Display Context
         run: |
-          echo context : ${{toJSON(github)}}
+          echo "context:"
+          echo '${{toJSON(github)}}'
           # echo "--- GitHub Event Details ---"
           # echo '${{ toJSON(github.event) }}'
 
