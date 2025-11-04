@@ -24,7 +24,8 @@ jobs:
       - name: Display Context
         run: |
           echo context : ${{github.ref}}
-          echo event: ${{github.event}}
+          echo "--- GitHub Event Details ---"
+          echo '${{ toJSON(github.event) }}'
 
       - name: Checkout Code
         uses: actions/checkout@v4
