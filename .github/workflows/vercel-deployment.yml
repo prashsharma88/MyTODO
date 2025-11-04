@@ -23,9 +23,9 @@ jobs:
     steps:
       - name: Display Context
         run: |
-          echo context : ${{github.ref}}
-          echo "--- GitHub Event Details ---"
-          echo '${{ toJSON(github.event) }}'
+          echo context : ${{toJSON(github)}}
+          # echo "--- GitHub Event Details ---"
+          # echo '${{ toJSON(github.event) }}'
 
       - name: Checkout Code
         uses: actions/checkout@v4
