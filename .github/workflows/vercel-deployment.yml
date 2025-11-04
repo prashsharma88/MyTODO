@@ -77,6 +77,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Setup Node Environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          cache: "npm"
+
       - name: Download Build Artifact
         uses: actions/download-artifact@v5
         with:
