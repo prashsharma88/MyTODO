@@ -84,14 +84,17 @@ jobs:
       #       node-version: ${{env.NODE_VERSION}}
       #       cache: "npm"
 
-      - name: Download Build Artifact
-        uses: actions/download-artifact@v5
-        with:
-          name: frontend-build
-          path: ./vercel/output
+      #   - name: Download Build Artifact
+      #     uses: actions/download-artifact@v5
+      #     with:
+      #       name: frontend-build
+      #       path: ./vercel/output
 
       - name: Install Vercel CLI
         run: npm install -g vercel # https://vercel.com/docs/cli?package-manager=npm
+
+      - name: Build
+        run: vercel build
 
       - name: Deploy to Vercel Production
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} # https://vercel.com/docs/cli/deploy
