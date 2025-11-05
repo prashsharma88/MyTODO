@@ -17,7 +17,6 @@ jobs:
   ci:
     name: Code Quality & Test
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
 
     steps:
       - name: Display Context
