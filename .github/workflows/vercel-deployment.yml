@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-build
-          path: vercel/output
+          path: dist
 
   deploy:
     name: Deploy to Vercel
@@ -88,7 +88,7 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: frontend-build
-          path: ./dist
+          path: ./vercel/output
 
       - name: Install Vercel CLI
         run: npm install -g vercel # https://vercel.com/docs/cli?package-manager=npm
