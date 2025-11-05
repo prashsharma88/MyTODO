@@ -96,7 +96,7 @@ jobs:
         run: npm install -g vercel # https://vercel.com/docs/cli?package-manager=npm
 
       - name: Deploy to Vercel Production
-        run: vercel deploy --prebuilt # https://vercel.com/docs/cli/deploy
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} # https://vercel.com/docs/cli/deploy
         env:
           # Use the secrets we configured in GitHub settings
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
