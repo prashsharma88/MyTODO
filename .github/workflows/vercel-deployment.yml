@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Display Context
+        run: |
+          echo "--- GitHub Event Details ---"
+          echo '${{ toJSON(github) }}'
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
