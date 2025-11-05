@@ -3,8 +3,10 @@ name: Code Check and Vercel Deployment
 on:
   push:
     branches:
-      - main
-    #   - release
+      - release
+  pull_request:
+    branches:
+      - release
 
 # Event List: https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
 
@@ -15,6 +17,7 @@ jobs:
   ci:
     name: Code Quality & Test
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
 
     steps:
       - name: Display Context
@@ -42,37 +45,38 @@ jobs:
           npm run lint
           echo "Code Quality Check Complete"
 
-  build:
-    name: Built React Code
-    runs-on: ubuntu-latest
-    needs: [ci]
+  #   build:
+  #     name: Built React Code
+  #     runs-on: ubuntu-latest
+  #     needs: [ci]
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+  #     steps:
+  #       - name: Checkout Code
+  #         uses: actions/checkout@v4
 
-      - name: Setup Node Environment
-        uses: actions/setup-node@v6
-        with:
-          node-version: ${{env.NODE_VERSION}}
-          cache: "npm"
+  #       - name: Setup Node Environment
+  #         uses: actions/setup-node@v6
+  #         with:
+  #           node-version: ${{env.NODE_VERSION}}
+  #           cache: "npm"
 
-      - name: Install Dependencies
-        run: npm ci
+  #       - name: Install Dependencies
+  #         run: npm ci
 
-      - name: Create Production Build
-        run: npm run build
+  #       - name: Create Production Build
+  #         run: npm run build
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-build
-          path: dist
+  #       - name: Upload Artifacts
+  #         uses: actions/upload-artifact@v4
+  #         with:
+  #           name: frontend-build
+  #           path: dist
 
   deploy:
     name: Deploy to Vercel
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [ci]
+    if: github.event_name == 'push'
 
     steps:
       - name: Checkout Code
