@@ -1,0 +1,41 @@
+name: Main Branch Code Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  NODE_VERSION: 20.x
+
+jobs:
+  build:
+    name: Install Dependency And Build Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Event Details
+        run: |
+          echo "--- GitHub Context ---"
+          echo '${{ toJSON(github) }}'
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node Environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Code
+        run: npm run build
+
+      - name: Run Unit Test
+        run: npm run test
+
+      - name: Linting
+        run: npm run lint
